@@ -1,0 +1,3 @@
+/home/baptiste/Documents/EpiGimp/build/CMakeFiles/EpiGimp.dir
+/home/baptiste/Documents/EpiGimp/build/CMakeFiles/edit_cache.dir
+/home/baptiste/Documents/EpiGimp/build/CMakeFiles/rebuild_cache.dir
