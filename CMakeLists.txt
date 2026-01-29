@@ -28,11 +28,16 @@ pkg_check_modules(JPEG REQUIRED libjpeg)
 set(SOURCES
     src/main.cpp
     src/MainWindow.cpp
+    src/CommandStack.cpp
+    src/ImageCommand.cpp
 )
 
 # Header files
 set(HEADERS
     include/epigimp/MainWindow.hpp
+    include/epigimp/Command.hpp
+    include/epigimp/CommandStack.hpp
+    include/epigimp/ImageCommand.hpp
 )
 
 # Create executable

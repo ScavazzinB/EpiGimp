@@ -129,6 +129,54 @@ EpiGimp/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/EpiGimp.dir/build.make CMakeFiles/EpiGimp.dir/build
 .PHONY : EpiGimp/fast
 
+src/CommandStack.o: src/CommandStack.cpp.o
+.PHONY : src/CommandStack.o
+
+# target to build an object file
+src/CommandStack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EpiGimp.dir/build.make CMakeFiles/EpiGimp.dir/src/CommandStack.cpp.o
+.PHONY : src/CommandStack.cpp.o
+
+src/CommandStack.i: src/CommandStack.cpp.i
+.PHONY : src/CommandStack.i
+
+# target to preprocess a source file
+src/CommandStack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EpiGimp.dir/build.make CMakeFiles/EpiGimp.dir/src/CommandStack.cpp.i
+.PHONY : src/CommandStack.cpp.i
+
+src/CommandStack.s: src/CommandStack.cpp.s
+.PHONY : src/CommandStack.s
+
+# target to generate assembly for a file
+src/CommandStack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EpiGimp.dir/build.make CMakeFiles/EpiGimp.dir/src/CommandStack.cpp.s
+.PHONY : src/CommandStack.cpp.s
+
+src/ImageCommand.o: src/ImageCommand.cpp.o
+.PHONY : src/ImageCommand.o
+
+# target to build an object file
+src/ImageCommand.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EpiGimp.dir/build.make CMakeFiles/EpiGimp.dir/src/ImageCommand.cpp.o
+.PHONY : src/ImageCommand.cpp.o
+
+src/ImageCommand.i: src/ImageCommand.cpp.i
+.PHONY : src/ImageCommand.i
+
+# target to preprocess a source file
+src/ImageCommand.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EpiGimp.dir/build.make CMakeFiles/EpiGimp.dir/src/ImageCommand.cpp.i
+.PHONY : src/ImageCommand.cpp.i
+
+src/ImageCommand.s: src/ImageCommand.cpp.s
+.PHONY : src/ImageCommand.s
+
+# target to generate assembly for a file
+src/ImageCommand.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EpiGimp.dir/build.make CMakeFiles/EpiGimp.dir/src/ImageCommand.cpp.s
+.PHONY : src/ImageCommand.cpp.s
+
 src/MainWindow.o: src/MainWindow.cpp.o
 .PHONY : src/MainWindow.o
 
@@ -186,6 +234,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... EpiGimp"
+	@echo "... src/CommandStack.o"
+	@echo "... src/CommandStack.i"
+	@echo "... src/CommandStack.s"
+	@echo "... src/ImageCommand.o"
+	@echo "... src/ImageCommand.i"
+	@echo "... src/ImageCommand.s"
 	@echo "... src/MainWindow.o"
 	@echo "... src/MainWindow.i"
 	@echo "... src/MainWindow.s"

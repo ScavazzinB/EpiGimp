@@ -1492,4 +1492,8 @@ CMakeFiles/EpiGimp.dir/src/main.cpp.o: \
  /usr/include/gtkmm-3.0/gtkmm/treestore.h \
  /usr/include/gtkmm-3.0/gtkmm/uimanager.h \
  /usr/include/gtkmm-3.0/gtkmm/viewport.h \
- /usr/include/gtkmm-3.0/gtkmm/volumebutton.h /usr/include/c++/15/iostream
+ /usr/include/gtkmm-3.0/gtkmm/volumebutton.h \
+ /home/baptiste/Documents/EpiGimp/include/epigimp/CommandStack.hpp \
+ /home/baptiste/Documents/EpiGimp/include/epigimp/Command.hpp \
+ /home/baptiste/Documents/EpiGimp/include/epigimp/ImageCommand.hpp \
+ /usr/include/c++/15/iostream

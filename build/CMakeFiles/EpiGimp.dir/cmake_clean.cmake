@@ -1,5 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/EpiGimp.dir/link.d"
+  "CMakeFiles/EpiGimp.dir/src/CommandStack.cpp.o"
+  "CMakeFiles/EpiGimp.dir/src/CommandStack.cpp.o.d"
+  "CMakeFiles/EpiGimp.dir/src/ImageCommand.cpp.o"
+  "CMakeFiles/EpiGimp.dir/src/ImageCommand.cpp.o.d"
   "CMakeFiles/EpiGimp.dir/src/MainWindow.cpp.o"
   "CMakeFiles/EpiGimp.dir/src/MainWindow.cpp.o.d"
   "CMakeFiles/EpiGimp.dir/src/main.cpp.o"

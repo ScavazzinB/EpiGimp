@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/baptiste/Documents/EpiGimp/src/CommandStack.cpp" "CMakeFiles/EpiGimp.dir/src/CommandStack.cpp.o" "gcc" "CMakeFiles/EpiGimp.dir/src/CommandStack.cpp.o.d"
+  "/home/baptiste/Documents/EpiGimp/src/ImageCommand.cpp" "CMakeFiles/EpiGimp.dir/src/ImageCommand.cpp.o" "gcc" "CMakeFiles/EpiGimp.dir/src/ImageCommand.cpp.o.d"
   "/home/baptiste/Documents/EpiGimp/src/MainWindow.cpp" "CMakeFiles/EpiGimp.dir/src/MainWindow.cpp.o" "gcc" "CMakeFiles/EpiGimp.dir/src/MainWindow.cpp.o.d"
   "/home/baptiste/Documents/EpiGimp/src/main.cpp" "CMakeFiles/EpiGimp.dir/src/main.cpp.o" "gcc" "CMakeFiles/EpiGimp.dir/src/main.cpp.o.d"
   "" "EpiGimp" "gcc" "CMakeFiles/EpiGimp.dir/link.d"
