@@ -16,7 +16,18 @@ enum class Tool {
     NONE,
     PIPETTE,
     BRUSH,
-    ERASER
+    ERASER,
+    SELECTION,
+    LINE,
+    RECTANGLE,
+    CIRCLE,
+    CROP
+};
+
+// Shape fill mode
+enum class ShapeMode {
+    OUTLINE,
+    FILLED
 };
 
 /**
@@ -43,9 +54,29 @@ protected:
     void on_menu_image_flip_h();
     void on_menu_image_flip_v();
     void on_menu_image_scale();
+    void on_menu_image_crop();
+    void on_menu_image_brightness_contrast();
     void on_menu_edit_undo();
     void on_menu_edit_redo();
+    void on_menu_edit_copy();
+    void on_menu_edit_cut();
+    void on_menu_edit_paste();
+    void on_menu_edit_delete();
     void on_menu_help_about();
+
+    // Filter handlers
+    void on_menu_filter_blur();
+    void on_menu_filter_sharpen();
+    void on_menu_filter_grayscale();
+    void on_menu_filter_invert();
+    void on_menu_filter_sepia();
+
+    // Adjustment handlers
+    void on_menu_adjust_gamma();
+    void on_menu_adjust_hue_saturation();
+    void on_menu_adjust_exposure();
+    void on_menu_adjust_temperature();
+    void on_menu_adjust_levels();
 
     // Canvas drawing handler
     bool on_canvas_draw(const Cairo::RefPtr<Cairo::Context>& cr);
@@ -80,11 +111,47 @@ private:
 
     // Brush/Eraser drawing
     void canvas_to_image_coords(double canvas_x, double canvas_y, int& img_x, int& img_y);
+    void image_to_canvas_coords(int img_x, int img_y, double& canvas_x, double& canvas_y);
     void draw_brush_stroke(int x1, int y1, int x2, int y2, bool erase = false);
     void draw_brush_point(int x, int y, bool erase = false);
     void start_drawing(double x, double y);
     void continue_drawing(double x, double y);
     void finish_drawing();
+
+    // Shape drawing
+    void start_shape(double x, double y);
+    void continue_shape(double x, double y);
+    void finish_shape();
+    void draw_line_on_image(int x1, int y1, int x2, int y2);
+    void draw_rectangle_on_image(int x1, int y1, int x2, int y2, bool filled);
+    void draw_circle_on_image(int cx, int cy, int radius, bool filled);
+
+    // Selection
+    void start_selection(double x, double y);
+    void continue_selection(double x, double y);
+    void finish_selection();
+    void clear_selection();
+    bool has_selection() const;
+    void draw_selection_overlay(const Cairo::RefPtr<Cairo::Context>& cr);
+
+    // Crop
+    void start_crop(double x, double y);
+    void continue_crop(double x, double y);
+    void finish_crop();
+    void apply_crop();
+
+    // Filters
+    void apply_blur(int radius);
+    void apply_sharpen();
+    void apply_grayscale();
+    void apply_invert();
+    void apply_sepia();
+    void apply_brightness_contrast(int brightness, int contrast);
+    void apply_gamma(double gamma);
+    void apply_hue_saturation(int hue, int saturation, int lightness);
+    void apply_exposure(double exposure);
+    void apply_temperature(int temperature);
+    void apply_levels(int black_point, int white_point, double gamma);
 
     // Current file info
     std::string m_current_filepath;
@@ -118,6 +185,30 @@ private:
     int m_last_draw_y = 0;
     Glib::RefPtr<Gdk::Pixbuf> m_image_before_stroke;  // For undo
 
+    // Shape drawing state
+    ShapeMode m_shape_mode = ShapeMode::OUTLINE;
+    bool m_is_drawing_shape = false;
+    int m_shape_start_x = 0;
+    int m_shape_start_y = 0;
+    int m_shape_end_x = 0;
+    int m_shape_end_y = 0;
+
+    // Selection state
+    bool m_has_selection = false;
+    bool m_is_selecting = false;
+    int m_selection_x1 = 0;
+    int m_selection_y1 = 0;
+    int m_selection_x2 = 0;
+    int m_selection_y2 = 0;
+    Glib::RefPtr<Gdk::Pixbuf> m_clipboard;  // For copy/paste
+
+    // Crop state
+    bool m_is_cropping = false;
+    int m_crop_x1 = 0;
+    int m_crop_y1 = 0;
+    int m_crop_x2 = 0;
+    int m_crop_y2 = 0;
+
     // Main layout
     Gtk::Box m_main_box;
     Gtk::Box m_content_box;  // Contains toolbar + canvas
@@ -140,6 +231,11 @@ private:
     Gtk::Menu m_submenu_edit;
     Gtk::MenuItem m_menu_edit_undo;
     Gtk::MenuItem m_menu_edit_redo;
+    Gtk::SeparatorMenuItem m_menu_edit_separator;
+    Gtk::MenuItem m_menu_edit_copy;
+    Gtk::MenuItem m_menu_edit_cut;
+    Gtk::MenuItem m_menu_edit_paste;
+    Gtk::MenuItem m_menu_edit_delete;
 
     // Image menu (transformations)
     Gtk::MenuItem m_menu_image;
@@ -149,6 +245,30 @@ private:
     Gtk::MenuItem m_menu_image_flip_v;
     Gtk::SeparatorMenuItem m_menu_image_separator;
     Gtk::MenuItem m_menu_image_scale;
+    Gtk::MenuItem m_menu_image_crop;
+    Gtk::SeparatorMenuItem m_menu_image_separator2;
+    Gtk::MenuItem m_menu_image_brightness_contrast;
+
+    // Filters menu
+    Gtk::MenuItem m_menu_filters;
+    Gtk::Menu m_submenu_filters;
+    Gtk::MenuItem m_menu_filter_blur;
+    Gtk::MenuItem m_menu_filter_sharpen;
+    Gtk::SeparatorMenuItem m_menu_filter_separator;
+    Gtk::MenuItem m_menu_filter_grayscale;
+    Gtk::MenuItem m_menu_filter_invert;
+    Gtk::MenuItem m_menu_filter_sepia;
+
+    // Adjustments menu
+    Gtk::MenuItem m_menu_adjustments;
+    Gtk::Menu m_submenu_adjustments;
+    Gtk::MenuItem m_menu_adjust_brightness_contrast;
+    Gtk::MenuItem m_menu_adjust_gamma;
+    Gtk::MenuItem m_menu_adjust_levels;
+    Gtk::SeparatorMenuItem m_menu_adjust_separator;
+    Gtk::MenuItem m_menu_adjust_hue_saturation;
+    Gtk::MenuItem m_menu_adjust_exposure;
+    Gtk::MenuItem m_menu_adjust_temperature;
 
     // Help menu
     Gtk::MenuItem m_menu_help;
@@ -160,6 +280,12 @@ private:
     Gtk::ToggleButton m_tool_pipette;
     Gtk::ToggleButton m_tool_brush;
     Gtk::ToggleButton m_tool_eraser;
+    Gtk::ToggleButton m_tool_selection;
+    Gtk::ToggleButton m_tool_line;
+    Gtk::ToggleButton m_tool_rectangle;
+    Gtk::ToggleButton m_tool_circle;
+    Gtk::ToggleButton m_tool_crop;
+    Gtk::ToggleButton m_shape_fill_toggle;
     Gtk::Label m_brush_size_label;
     Gtk::HScale m_brush_size_scale;
 
